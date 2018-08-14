@@ -11,11 +11,11 @@ const Data = require('../Schemas/Data');
 // const Comment = require ('../Schemas/Comment');
 
 mongoose.connect(db, {useNewUrlParser: true}).then(() => {
-    console.log('Database is connected')
-},
-err => {
-    console.log('Can not connect to the database' + err)
-});
+        console.log('Database is connected')
+    },
+    err => {
+        console.log('Can not connect to the database' + err)
+    });
 
 router.get('/', function (req, res, next) {
     Data.find().sort({title: 'asc'}).exec(function (err, data) {
@@ -146,21 +146,21 @@ router.post('/filter', function (req, res, next) {
 //
 router.post('/data', (req, res) => {
     var tags = req.body.tags.toString().split(',');
-const data = new Data({
-    title: req.body.title,
-    descript: req.body.descript,
-    lang: req.body.lang,
-    code: req.body.code,
-    author: req.body.author,
-    tags: tags
-});
-data.save()
-    .then(data => {
-    res.status(200).redirect("/users");
-})
-.catch(err => {
-    res.status(400).send('unable to save the data into database');
-});
+    const data = new Data({
+        title: req.body.title,
+        descript: req.body.descript,
+        lang: req.body.lang,
+        code: req.body.code,
+        author: req.body.author,
+        tags: tags
+    });
+    data.save()
+        .then(data => {
+            res.status(200).redirect("/users");
+        })
+        .catch(err => {
+            res.status(400).send('unable to save the data into database');
+        });
 });
 //
 // //TODO tällä hetkellä tarkistaa onko kayttäjä, jos on ei lisää, ellei -> lisää
@@ -261,7 +261,6 @@ router.route('/deletedata/:id').delete(function (req, res) {
 //         else res.json('Successfully removed');
 //     });
 // });
-
 
 
 module.exports = router;
