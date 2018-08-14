@@ -144,24 +144,24 @@ router.post('/filter', function (req, res, next) {
 // });
 // });
 //
-// router.post('/data', (req, res) => {
-//     var tags = req.body.tags.toString().split(',');
-// const data = new Data({
-//     title: req.body.title,
-//     descript: req.body.descript,
-//     lang: req.body.lang,
-//     code: req.body.code,
-//     author: req.body.author,
-//     tags: tags
-// });
-// data.save()
-//     .then(data => {
-//     res.status(200).redirect("/users");
-// })
-// .catch(err => {
-//     res.status(400).send('unable to save the data into database');
-// });
-// });
+router.post('/data', (req, res) => {
+    var tags = req.body.tags.toString().split(',');
+const data = new Data({
+    title: req.body.title,
+    descript: req.body.descript,
+    lang: req.body.lang,
+    code: req.body.code,
+    author: req.body.author,
+    tags: tags
+});
+data.save()
+    .then(data => {
+    res.status(200).redirect("/users");
+})
+.catch(err => {
+    res.status(400).send('unable to save the data into database');
+});
+});
 //
 // //TODO tällä hetkellä tarkistaa onko kayttäjä, jos on ei lisää, ellei -> lisää
 // router.post('/signup', (req, res) => {
