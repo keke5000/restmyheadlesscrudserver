@@ -1,10 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const db = "mongodb://localhost:27017/restmycodeDB";
-
-//mongodb://heroku_gb6159f8:<dbpassword>@ds129459.mlab.com:29459/heroku_gb6159f8";
-
+const db = "mongodb://heroku_gb6159f8:5056oepv3ed5k74s1nuej8f0na@ds129459.mlab.com:29459/heroku_gb6159f8";
 
 const Data = require('../Schemas/Data');
 // const User = require('../Schemas/User');
@@ -145,6 +142,7 @@ router.post('/filter', function (req, res, next) {
 // });
 //
 router.post('/data', (req, res) => {
+    console.log("päästiin users/data");
     var tags = req.body.tags.toString().split(',');
     const data = new Data({
         title: req.body.title,
@@ -156,9 +154,11 @@ router.post('/data', (req, res) => {
     });
     data.save()
         .then(data => {
-            res.status(200).redirect("/users");
+            console.log("Data happily received", data);
+            res.status(201).send("Jebu");
         })
         .catch(err => {
+            console.log("Error message: ", err);
             res.status(400).send('unable to save the data into database');
         });
 });
