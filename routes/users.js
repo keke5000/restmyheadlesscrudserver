@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const db = "mongodb://heroku_gb6159f8:5056oepv3ed5k74s1nuej8f0na@ds129459.mlab.com:29459/heroku_gb6159f8";
+const url = require('./url');
+
+const db = url;
 
 const Data = require('../Schemas/Data');
 // const User = require('../Schemas/User');
